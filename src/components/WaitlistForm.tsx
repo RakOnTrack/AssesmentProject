@@ -8,24 +8,13 @@ export default function WaitlistForm() {
     email: '',
     university: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setShowSuccess(true);
     // In a real app, this would send data to an API
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank you for joining!</h3>
-        <p className="text-gray-600">
-          We\'ll notify you when UniBot launches at your university.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <section id="waitlist" className="py-20 bg-gray-50">
@@ -127,6 +116,14 @@ export default function WaitlistForm() {
               Join Waitlist
             </button>
           </div>
+          
+          {showSuccess && (
+            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-green-800 text-sm">
+                Thank you for joining! We'll notify you when UniBot launches at your university.
+              </p>
+            </div>
+          )}
         </form>
 
         <p className="text-center mt-6 text-gray-600">
